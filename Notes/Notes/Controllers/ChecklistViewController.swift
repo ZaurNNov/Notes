@@ -99,5 +99,28 @@ class ChecklistViewController: UITableViewController {
         label.text = item.text
     }
 
+    //MARK: Actions
+    //Add row
+    @IBAction func addItem()
+    {
+        let newRowIndex = items.count
+        let item = ChecklistItem()
+        item.text = "New Item"
+        item.checked = true
+        items.append(item)
+
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+    }
+    //delete row
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        items.remove(at: indexPath.row)
+        let indexPaths = [indexPath]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
+
+
 }
 
