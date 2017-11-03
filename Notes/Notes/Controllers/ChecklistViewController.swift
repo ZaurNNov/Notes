@@ -8,8 +8,10 @@
 
 import UIKit
 
+//Controller
 class ChecklistViewController: UITableViewController {
 
+    //Local model
     required init?(coder aDecoder: NSCoder) {
         items = [ChecklistItem]()
 
@@ -49,54 +51,52 @@ class ChecklistViewController: UITableViewController {
     //for test
     var items: [ChecklistItem]
 
-//    var row0text: ChecklistItem
-//    var row1text: ChecklistItem
-//    var row2text: ChecklistItem
-//    var row3text: ChecklistItem
-//    var row4text: ChecklistItem
-
-
     //MARK: TableView Data
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return items.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
-        let cell = tableView.dequeueReusableCell(withIdentifier: checklistItem, for: indexPath)
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: checklistItem, for: indexPath)
 
         //test
         let item = items[indexPath.row]
-        let label = cell.viewWithTag(cellLabelTag) as! UILabel
-        label.text = item.text
 
-        configureCheckmark(for: cell, at: indexPath)
+        configureText(for: cell, with: item)
+        configureCheckmark(for: cell, with: item)
         return cell
     }
 
     // select rows
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath)
     {
         if let cell = tableView.cellForRow(at: indexPath) {
             let item = items[indexPath.row]
-            item.checked = !item.checked
-
-            configureCheckmark(for: cell, at: indexPath)
+            item.toggleChecked()
+            configureCheckmark(for: cell, with: item)
         }
-
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    func configureCheckmark(for cell: UITableViewCell, at indexPath: IndexPath)
+    func configureCheckmark(for cell: UITableViewCell,
+                            with item: ChecklistItem)
     {
-        let item = items[indexPath.row]
-
         if item.checked {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
         }
+    }
+
+    func configureText(for cell: UITableViewCell,
+                       with item: ChecklistItem)
+    {
+        let label = cell.viewWithTag(cellLabelTag) as! UILabel
+        label.text = item.text
     }
 
 }
