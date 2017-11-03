@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		203C7AC41FAC1A7F00D0E35A /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */; };
 		CE83F1B51FA1CA6100F00295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F1B41FA1CA6100F00295 /* AppDelegate.swift */; };
 		CE83F1B71FA1CA6100F00295 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F1B61FA1CA6100F00295 /* ChecklistViewController.swift */; };
 		CE83F1BA1FA1CA6100F00295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE83F1B81FA1CA6100F00295 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		CE83F1B11FA1CA6100F00295 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F1B41FA1CA6100F00295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE83F1B61FA1CA6100F00295 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				CE83F1C01FA1CA6100F00295 /* LaunchScreen.storyboard */,
 				CE83F1C31FA1CA6100F00295 /* Info.plist */,
 				CE83F1BB1FA1CA6100F00295 /* Notes.xcdatamodeld */,
+				203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */,
 			);
 			path = Notes;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				CE83F1B71FA1CA6100F00295 /* ChecklistViewController.swift in Sources */,
 				CE83F1BD1FA1CA6100F00295 /* Notes.xcdatamodeld in Sources */,
 				CE83F1B51FA1CA6100F00295 /* AppDelegate.swift in Sources */,
+				203C7AC41FAC1A7F00D0E35A /* ChecklistItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
