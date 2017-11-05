@@ -16,16 +16,22 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     //MARK: Action and IB elements
     @IBAction func cancel()
     {
-        dismiss(animated: true, completion: nil)
+        delegate?.addItemViewControllerDidCancel(self)
     }
 
     @IBAction func done()
     {
-        dismiss(animated: true, completion: nil)
+        //create item and add text
+        let item = ChecklistItem()
+        item.text = textField.text!
+        item.checked = false
+        //send instanse for delegate
+        delegate?.addItemViewController(self, didFinishingAdding: item)
     }
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var textField: UITextField!
+    weak var delegate: AddItemViewControllerDelegate?
 
     
 
@@ -53,4 +59,10 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
 
     
     
+}
+
+//MARK: Delegates: hand-in-hund with protocols
+protocol AddItemViewControllerDelegate: class {
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+    func addItemViewController(_ controller: AddItemViewController, didFinishingAdding item: ChecklistItem)
 }

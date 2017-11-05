@@ -9,7 +9,7 @@
 import UIKit
 
 //Controller
-class ChecklistViewController: UITableViewController {
+class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
 
     //Local model
     required init?(coder aDecoder: NSCoder) {
@@ -44,8 +44,15 @@ class ChecklistViewController: UITableViewController {
     }
     
     //my id for cell and segue
-    let checklistItem = "ChecklistItem"
-    let cellLabelTag = 100
+    //ID's
+    private struct variableIdentifiers {
+        //for cell
+        static let checklistItem = "ChecklistItem"
+        static let cellLabelTag = 100
+
+        //segue id
+        static let addItem = "AddItem"
+    }
 
 
     //for test
@@ -60,7 +67,7 @@ class ChecklistViewController: UITableViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
-            withIdentifier: checklistItem, for: indexPath)
+            withIdentifier: variableIdentifiers.checklistItem, for: indexPath)
 
         //test
         let item = items[indexPath.row]
@@ -95,24 +102,11 @@ class ChecklistViewController: UITableViewController {
     func configureText(for cell: UITableViewCell,
                        with item: ChecklistItem)
     {
-        let label = cell.viewWithTag(cellLabelTag) as! UILabel
+        let label = cell.viewWithTag(variableIdentifiers.cellLabelTag) as! UILabel
         label.text = item.text
     }
 
     //MARK: Actions
-    //Add row
-    @IBAction func addItem()
-    {
-        let newRowIndex = items.count
-        let item = ChecklistItem()
-        item.text = "New Item"
-        item.checked = true
-        items.append(item)
-
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        let indexPaths = [indexPath]
-        tableView.insertRows(at: indexPaths, with: .automatic)
-    }
     //delete row
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
@@ -121,6 +115,34 @@ class ChecklistViewController: UITableViewController {
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
 
+    //MARK: Delegates: hand-in-hund with protocols
+    //AddItemViewControllerDelegate funcs
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+    {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func addItemViewController(_ controller: AddItemViewController, didFinishingAdding item: ChecklistItem)
+    {
+        let newRowIndex = items.count
+        items.append(item)
+
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
+
+        dismiss(animated: true, completion: nil)
+    }
+
+    //MARK: Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Delegate: AddItemViewController
+        if segue.identifier == variableIdentifiers.addItem {
+            let naviController = segue.destination as! UINavigationController
+            let targetController = naviController.topViewController as! AddItemViewController
+            targetController.delegate = self
+        }
+    }
+
 
 }
-
