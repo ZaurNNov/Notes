@@ -9,7 +9,7 @@
 import UIKit
 
 //Controller
-class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
+class ChecklistViewController: UITableViewController, ItemDetailViewControllerDelegate {
 
     //Local model
     required init?(coder aDecoder: NSCoder) {
@@ -49,9 +49,11 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         //for cell
         static let checklistItem = "ChecklistItem"
         static let cellLabelTag = 100
+        static let cellLabelCheckTag = 101
 
         //segue id
         static let addItem = "AddItem"
+        static let editItem = "EditItem"
     }
 
 
@@ -92,10 +94,12 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     func configureCheckmark(for cell: UITableViewCell,
                             with item: ChecklistItem)
     {
+        let label = cell.viewWithTag(variableIdentifiers.cellLabelCheckTag) as! UILabel
+
         if item.checked {
-            cell.accessoryType = .checkmark
+            label.text = "☑️"
         } else {
-            cell.accessoryType = .none
+            label.text = "  "
         }
     }
 
@@ -117,12 +121,12 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
 
     //MARK: Delegates: hand-in-hund with protocols
     //AddItemViewControllerDelegate funcs
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
     {
         dismiss(animated: true, completion: nil)
     }
 
-    func addItemViewController(_ controller: AddItemViewController, didFinishingAdding item: ChecklistItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishingAdding item: ChecklistItem)
     {
         let newRowIndex = items.count
         items.append(item)
@@ -134,13 +138,33 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         dismiss(animated: true, completion: nil)
     }
 
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
+        if let index = items.index(of: item) {
+            let indexPath = IndexPath(row: index, section: 0)
+            if let cell = tableView.cellForRow(at: indexPath) {
+                configureText(for: cell, with: item)
+            }
+        }
+        dismiss(animated: true, completion: nil)
+    }
+
     //MARK: Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //Delegate: AddItemViewController
+        //Delegate: ItemDetailViewController
         if segue.identifier == variableIdentifiers.addItem {
+            //Add new Item
             let naviController = segue.destination as! UINavigationController
-            let targetController = naviController.topViewController as! AddItemViewController
+            let targetController = naviController.topViewController as! ItemDetailViewController
             targetController.delegate = self
+
+             //Edit Item
+        } else if segue.identifier == variableIdentifiers.editItem {
+            let naviController = segue.destination as! UINavigationController
+            let targetController = naviController.topViewController as! ItemDetailViewController
+            targetController.delegate = self
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                targetController.itemToEdit = items[indexPath.row]
+            }
         }
     }
 

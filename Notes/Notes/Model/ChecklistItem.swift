@@ -9,7 +9,7 @@
 import Foundation
 
 //Model
-class ChecklistItem {
+class ChecklistItem: NSObject {
     var text = ""
     var checked = false
 
