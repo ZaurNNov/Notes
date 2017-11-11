@@ -10,7 +10,16 @@ import Foundation
 
 //Model
 class ChecklistItem: NSObject, NSCoding {
-    var text = ""
+
+    //my stringValue
+    private struct myStrings {
+        //strings
+        static let text = "Text"
+        static let checked = "Checked"
+        static let empty = ""
+    }
+
+    var text = myStrings.empty
     var checked = false
 
     func toggleChecked() {
@@ -19,11 +28,13 @@ class ChecklistItem: NSObject, NSCoding {
 
     //Coding - Decoding
     func encode(with aCoder: NSCoder) {
-        aCoder.encode(text, forKey: "Text")
-        aCoder.encode(checked, forKey: "Checked")
+        aCoder.encode(text, forKey: myStrings.text)
+        aCoder.encode(checked, forKey: myStrings.checked)
     }
 
     required init?(coder aDecoder: NSCoder) {
+        text = aDecoder.decodeObject(forKey: myStrings.text) as! String
+        checked = aDecoder.decodeBool(forKey: myStrings.checked)
         super.init()
     }
 
