@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		203C7AC41FAC1A7F00D0E35A /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */; };
+		204773DF1FC09A06000D0E07 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204773DE1FC09A06000D0E07 /* AllListsViewController.swift */; };
+		204773E11FC0A565000D0E07 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204773E01FC0A565000D0E07 /* Checklist.swift */; };
+		204773E31FC0AF4F000D0E07 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204773E21FC0AF4F000D0E07 /* ListDetailViewController.swift */; };
+		204773E51FC0B7A2000D0E07 /* myCustomMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204773E41FC0B7A2000D0E07 /* myCustomMethods.swift */; };
 		20AE35861FADA9B90044D698 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE35851FADA9B90044D698 /* ItemDetailViewController.swift */; };
 		CE83F1B51FA1CA6100F00295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F1B41FA1CA6100F00295 /* AppDelegate.swift */; };
 		CE83F1B71FA1CA6100F00295 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F1B61FA1CA6100F00295 /* ChecklistViewController.swift */; };
@@ -38,6 +42,10 @@
 
 /* Begin PBXFileReference section */
 		203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
+		204773DE1FC09A06000D0E07 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
+		204773E01FC0A565000D0E07 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
+		204773E21FC0AF4F000D0E07 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		204773E41FC0B7A2000D0E07 /* myCustomMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCustomMethods.swift; sourceTree = "<group>"; };
 		20AE35851FADA9B90044D698 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		CE83F1B11FA1CA6100F00295 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F1B41FA1CA6100F00295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */,
+				204773E01FC0A565000D0E07 /* Checklist.swift */,
+				204773E41FC0B7A2000D0E07 /* myCustomMethods.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			children = (
 				CE83F1B61FA1CA6100F00295 /* ChecklistViewController.swift */,
 				20AE35851FADA9B90044D698 /* ItemDetailViewController.swift */,
+				204773DE1FC09A06000D0E07 /* AllListsViewController.swift */,
+				204773E21FC0AF4F000D0E07 /* ListDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -310,9 +322,13 @@
 			files = (
 				20AE35861FADA9B90044D698 /* ItemDetailViewController.swift in Sources */,
 				CE83F1B71FA1CA6100F00295 /* ChecklistViewController.swift in Sources */,
+				204773E51FC0B7A2000D0E07 /* myCustomMethods.swift in Sources */,
+				204773DF1FC09A06000D0E07 /* AllListsViewController.swift in Sources */,
 				CE83F1BD1FA1CA6100F00295 /* Notes.xcdatamodeld in Sources */,
 				CE83F1B51FA1CA6100F00295 /* AppDelegate.swift in Sources */,
 				203C7AC41FAC1A7F00D0E35A /* ChecklistItem.swift in Sources */,
+				204773E11FC0A565000D0E07 /* Checklist.swift in Sources */,
+				204773E31FC0AF4F000D0E07 /* ListDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +414,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
+				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = default;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -455,6 +473,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				DEBUG_ACTIVITY_MODE = "";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;

@@ -22,7 +22,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
 
     func loadChecklistItems()
     {
-        let path = dataFilePath()
+        let path = Notes.dataFilePath(for: myIDsAndStrings.appendingPath)
         if let data = try? Data(contentsOf: path) {
             let unarhiver = NSKeyedUnarchiver(forReadingWith: data)
             items = unarhiver.decodeObject(forKey: myIDsAndStrings.saveChecklistItems) as! [ChecklistItem]
@@ -44,11 +44,23 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
 
         //strings
         static let saveChecklistItems = "ChecklistItems"
+        static let appendingPath = "Checklists.plist"
     }
 
 
     //for test
     var items: [ChecklistItem]
+    var checklist: Checklist!
+
+    //MARK: TableView Life cicle methods
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = checklist.name
+    }
 
     //MARK: TableView Data
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -169,18 +181,6 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
     }
 
     //MARK: DocumentDirectory save my files
-    func documentsDirectory() -> URL
-    {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        //link in this app-home folder
-        return paths[0]
-    }
-
-    func dataFilePath() -> URL
-    {
-        return documentsDirectory().appendingPathComponent("Checklists.plist")
-    }
-
     //serialization
     func saveChecklistItems()
     {
@@ -188,7 +188,7 @@ class ChecklistViewController: UITableViewController, ItemDetailViewControllerDe
         let arhiver = NSKeyedArchiver(forWritingWith: data)
         arhiver.encode(items, forKey: myIDsAndStrings.saveChecklistItems)
         arhiver.finishEncoding()
-        data.write(to: dataFilePath(), atomically: true)
+        data.write(to: Notes.dataFilePath(for: myIDsAndStrings.appendingPath), atomically: true)
     }
 
 

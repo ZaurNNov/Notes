@@ -8,6 +8,14 @@
 
 import UIKit
 
+//MARK: Delegates: hand-in-hund with protocols
+protocol ItemDetailViewControllerDelegate: class
+{
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishingAdding item: ChecklistItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem)
+}
+
 class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
 
     //Controller for Add Item scene
@@ -64,23 +72,14 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     }
 
     //MARK: UITextFieldDelegate funcs
-    //if text field empty - hide Done buttom
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 
-        let oldText = textField.text! as NSString
-        let newText = oldText.replacingCharacters(in: range, with: string) as NSString
-        doneBarButton.isEnabled = (newText.length > 0)
+        //if text field empty - hide Done buttom
+        hideDoneButtonIfTextEmpty(textField: textField, range: range, string: string, barButton: doneBarButton)
 
         return true
     }
 
-    
-    
 }
 
-//MARK: Delegates: hand-in-hund with protocols
-protocol ItemDetailViewControllerDelegate: class {
-    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
-    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishingAdding item: ChecklistItem)
-    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem)
-}
+
