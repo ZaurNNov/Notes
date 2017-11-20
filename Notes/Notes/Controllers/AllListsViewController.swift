@@ -31,17 +31,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     //inits
     required init?(coder aDecoder: NSCoder) {
         lists = [Checklist]()
-
         super.init(coder: aDecoder)
-        saveData(whatNeedsToBeKept: lists)
-        //exaples
-        /*
-        for list in lists {
-            let item = ChecklistItem()
-            item.text = "Checklist item \(item)"
-            list.items.append(item)
-        }
-         */
+        loadData()
     }
 
     // MARK: - Table view data source and delegate

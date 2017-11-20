@@ -71,6 +71,16 @@ func saveData (whatNeedsToBeKept thisSave: [Checklist])
     archiver.encode(thisSave, forKey: myStrings.saveChecklistItems)
     archiver.finishEncoding()
     data.write(to: dataFilePath(for: myStrings.appendingPath), atomically: true)
+    print("saveData")
+}
+
+//for global file (AppDelegate.swift)
+func saveDataFromViews(_ window: UIWindow?) {
+    let navigationController = window!.rootViewController
+        as! UINavigationController
+    let controller = navigationController.viewControllers[0] as! AllListsViewController
+    saveData(whatNeedsToBeKept: controller.lists)
+    print("saveDataFromViews")
 }
 
 
