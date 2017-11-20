@@ -15,44 +15,33 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
 
     //Model
     var lists: [Checklist]
+    
+    //load data
+    func loadData ()
+    {
+        let path = dataFilePath(for: myStrings.appendingPath)
+        
+        if let data = try? Data(contentsOf: path) {
+            let unarhiver = NSKeyedUnarchiver(forReadingWith: data)
+            lists = unarhiver.decodeObject(forKey: myStrings.saveChecklistItems) as! [Checklist]
+            unarhiver.finishDecoding()
+        }
+    }
 
     //inits
     required init?(coder aDecoder: NSCoder) {
         lists = [Checklist]()
 
         super.init(coder: aDecoder)
+        saveData(whatNeedsToBeKept: lists)
         //exaples
-
-        var list = Checklist(name: "Name of the checklist")
-        lists.append(list)
-
-        list = Checklist(name: "Birds")
-        lists.append(list)
-
-        list = Checklist(name: "Gross")
-        lists.append(list)
-
-        list = Checklist(name: "Apps")
-        lists.append(list)
-
-        list = Checklist(name: "To-Do")
-        lists.append(list)
-    }
-
-
-    //my id for cell, segue, stringValue
-    //ID's
-    private struct myIDsAndStrings {
-        //for cell
-        static let cellId = "Cell"
-
-        //segue id
-        static let showChecklist = "ShowChecklist"
-        static let addChecklist = "AddChecklist"
-
-        //strings
-        static let listDetailNaviController = "ListDetailNaviController"
-
+        /*
+        for list in lists {
+            let item = ChecklistItem()
+            item.text = "Checklist item \(item)"
+            list.items.append(item)
+        }
+         */
     }
 
     // MARK: - Table view data source and delegate
@@ -63,7 +52,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     //make cell
     func makeCell(for tableView: UITableView) -> UITableViewCell
     {
-        let cellId = myIDsAndStrings.cellId
+        let cellId = myStrings.cellId
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId) {
             return cell
         } else {
@@ -90,7 +79,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         tableView.deleteRows(at: indexPaths, with: .automatic)
     }
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let naviController = storyboard!.instantiateViewController(withIdentifier: myIDsAndStrings.listDetailNaviController) as! UINavigationController
+        let naviController = storyboard!.instantiateViewController(withIdentifier: myStrings.listDetailNaviController) as! UINavigationController
         let controller = naviController.topViewController as! ListDetailViewController
         controller.delegate = self
 
@@ -105,10 +94,10 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     //segue = "AddChecklist" (to ListDetailViewController)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.identifier == myIDsAndStrings.showChecklist {
+        if segue.identifier == myStrings.showChecklist {
             let controller = segue.destination as! ChecklistViewController
             controller.checklist = sender as! Checklist
-        } else if segue.identifier == myIDsAndStrings.addChecklist {
+        } else if segue.identifier == myStrings.addChecklist {
             let naviController = segue.destination as! UINavigationController
             let controller = naviController.topViewController as! ListDetailViewController
             controller.delegate = self
@@ -119,7 +108,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let checklist = lists[indexPath.row]
-        performSegue(withIdentifier: myIDsAndStrings.showChecklist, sender: checklist)
+        performSegue(withIdentifier: myStrings.showChecklist, sender: checklist)
     }
 
 

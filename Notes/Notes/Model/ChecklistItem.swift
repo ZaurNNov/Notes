@@ -11,14 +11,6 @@ import Foundation
 //Model
 class ChecklistItem: NSObject, NSCoding {
 
-    //my stringValue
-    private struct myStrings {
-        //strings
-        static let text = "Text"
-        static let checked = "Checked"
-        static let empty = ""
-    }
-
     var text = myStrings.empty
     var checked = false
 
