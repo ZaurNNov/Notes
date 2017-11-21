@@ -31,6 +31,7 @@ struct myStrings {
     static let checked = "Checked"
     static let checkedEmoji = "☑️"
     static let documentsFolderIs = "Documents folder is "
+    static let checklistIndex = "ChecklistIndex"
     
     //Navigation Controllers
     static let listDetailNaviController = "ListDetailNaviController"
@@ -75,7 +76,8 @@ func saveData (whatNeedsToBeKept thisSave: [Checklist])
 }
 
 //for global file (AppDelegate.swift)
-func saveDataFromViews(_ window: UIWindow?) {
+func saveDataFromViews(_ window: UIWindow?)
+{
     let navigationController = window!.rootViewController
         as! UINavigationController
     let controller = navigationController.viewControllers[0] as! AllListsViewController

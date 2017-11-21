@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
 
     //hints
     //if remove the numberOfSections(in) method, will always be a single section in the table view.
@@ -60,6 +60,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         present(naviController, animated: true, completion: nil)
     }
 
+    //MARK: TableView Life cicle methods
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        navigationController?.delegate = self
+        let index = dataModel.indexOfSelectedChecklist
+        if index >= 0 && index < dataModel.lists.count {
+            let checklist = dataModel.lists[index]
+            performSegue(withIdentifier: myStrings.showChecklist, sender: checklist)
+        }
+    }
 
     //MARK: Segues
     //segue = "ShowChecklist" (to ChecklistViewController)
@@ -79,10 +90,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        dataModel.indexOfSelectedChecklist = indexPath.row
         let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: myStrings.showChecklist, sender: checklist)
     }
-
+    //delegate NaviController
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        //was buck button tapped?
+        if viewController === self {
+            dataModel.indexOfSelectedChecklist = -1
+        }
+    }
 
     //delegate - listen ListDetailViewController
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController)
@@ -112,5 +130,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         dismiss(animated: true, completion: nil)
     }
 
+
 }
+
+
 

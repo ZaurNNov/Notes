@@ -25,6 +25,23 @@ class DataModel {
 
     init() {
         loadData()
+        registerDefaults()
+    }
+
+    func registerDefaults()
+    {
+        let dictionary : [String: Any] = [myStrings.checklistIndex: -1]
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+
+    var indexOfSelectedChecklist: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: myStrings.checklistIndex)
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: myStrings.checklistIndex)
+            UserDefaults.standard.synchronize()
+        }
     }
     
 }
