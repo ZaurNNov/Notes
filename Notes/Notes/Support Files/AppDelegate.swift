@@ -13,10 +13,20 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let dataModel = DataModel()
+
+    func saveDataModel()
+    {
+        let navigationController = window!.rootViewController as! UINavigationController
+        let controller = navigationController.viewControllers[0] as! AllListsViewController
+        controller.dataModel = dataModel
+        print("save DataModel")
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         print("\(myStrings.documentsFolderIs) \(documentsDirectory())")
+        saveDataModel()
         return true
     }
 

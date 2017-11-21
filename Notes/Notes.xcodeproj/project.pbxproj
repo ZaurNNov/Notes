@@ -13,6 +13,7 @@
 		204773E31FC0AF4F000D0E07 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204773E21FC0AF4F000D0E07 /* ListDetailViewController.swift */; };
 		204773E51FC0B7A2000D0E07 /* myCustomMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204773E41FC0B7A2000D0E07 /* myCustomMethods.swift */; };
 		20AE35861FADA9B90044D698 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AE35851FADA9B90044D698 /* ItemDetailViewController.swift */; };
+		20D060FA1FC4972600C8EC54 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D060F91FC4972600C8EC54 /* DataModel.swift */; };
 		CE83F1B51FA1CA6100F00295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F1B41FA1CA6100F00295 /* AppDelegate.swift */; };
 		CE83F1B71FA1CA6100F00295 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE83F1B61FA1CA6100F00295 /* ChecklistViewController.swift */; };
 		CE83F1BA1FA1CA6100F00295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE83F1B81FA1CA6100F00295 /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		204773E21FC0AF4F000D0E07 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
 		204773E41FC0B7A2000D0E07 /* myCustomMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myCustomMethods.swift; sourceTree = "<group>"; };
 		20AE35851FADA9B90044D698 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		20D060F91FC4972600C8EC54 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		CE83F1B11FA1CA6100F00295 /* Notes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE83F1B41FA1CA6100F00295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE83F1B61FA1CA6100F00295 /* ChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				203C7AC31FAC1A7F00D0E35A /* ChecklistItem.swift */,
 				204773E01FC0A565000D0E07 /* Checklist.swift */,
 				204773E41FC0B7A2000D0E07 /* myCustomMethods.swift */,
+				20D060F91FC4972600C8EC54 /* DataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				204773E51FC0B7A2000D0E07 /* myCustomMethods.swift in Sources */,
 				204773DF1FC09A06000D0E07 /* AllListsViewController.swift in Sources */,
 				CE83F1BD1FA1CA6100F00295 /* Notes.xcdatamodeld in Sources */,
+				20D060FA1FC4972600C8EC54 /* DataModel.swift in Sources */,
 				CE83F1B51FA1CA6100F00295 /* AppDelegate.swift in Sources */,
 				203C7AC41FAC1A7F00D0E35A /* ChecklistItem.swift in Sources */,
 				204773E11FC0A565000D0E07 /* Checklist.swift in Sources */,

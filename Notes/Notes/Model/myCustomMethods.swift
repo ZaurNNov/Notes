@@ -79,7 +79,7 @@ func saveDataFromViews(_ window: UIWindow?) {
     let navigationController = window!.rootViewController
         as! UINavigationController
     let controller = navigationController.viewControllers[0] as! AllListsViewController
-    saveData(whatNeedsToBeKept: controller.lists)
+    saveData(whatNeedsToBeKept: controller.dataModel.lists)
     print("saveDataFromViews")
 }
 
