@@ -32,7 +32,9 @@ struct myStrings {
     static let checkedEmoji = "☑️"
     static let documentsFolderIs = "Documents folder is "
     static let checklistIndex = "ChecklistIndex"
-    
+    static let firstTime = "FirstTime"
+    static let list = "List"
+
     //Navigation Controllers
     static let listDetailNaviController = "ListDetailNaviController"
     

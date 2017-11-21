@@ -26,21 +26,38 @@ class DataModel {
     init() {
         loadData()
         registerDefaults()
+        handleFirstTime()
     }
 
     func registerDefaults()
     {
-        let dictionary : [String: Any] = [myStrings.checklistIndex: -1]
+        let dictionary : [String: Any] = [myStrings.checklistIndex: -1, myStrings.firstTime: true]
         UserDefaults.standard.register(defaults: dictionary)
     }
 
-    var indexOfSelectedChecklist: Int {
+    var indexOfSelectedChecklist: Int
+    {
         get {
             return UserDefaults.standard.integer(forKey: myStrings.checklistIndex)
         }
         set {
             UserDefaults.standard.set(newValue, forKey: myStrings.checklistIndex)
             UserDefaults.standard.synchronize()
+        }
+    }
+
+    func handleFirstTime()
+    {
+        let userDefaults = UserDefaults.standard
+        let firstTime = userDefaults.bool(forKey: myStrings.firstTime)
+
+        if firstTime {
+            let checklist = Checklist(name: myStrings.list)
+            lists.append(checklist)
+
+            indexOfSelectedChecklist = 0
+            userDefaults.set(false, forKey: myStrings.firstTime)
+            userDefaults.synchronize()
         }
     }
     
